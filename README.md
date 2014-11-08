@@ -24,8 +24,9 @@ The `smartypants` plugin comes with some sensible default configuration, that ar
 
 # Options
 
-    enabled: true
-    options: qDew
+    enabled: true           // enable/disable the entire plugin
+    process: true           // process smartypants
+    options: qDew           // smartypants specific configuration options
 
 The options are described in detail on the PHP SmartyPants GitHub Site: https://github.com/michelf/php-smartypants
 
@@ -36,11 +37,16 @@ Also you can override the default options per-page:
     ---
     title: My Page
     smartypants:
-        enabled: true
+        process: true
         options: qd
     ---
 
     # "Lorem ipsum dolor sit amet"
+
+There are two main scenarios:
+
+1. **Disabled** by default by setting `process: false` in your `user/config/plugins/smartypants.yaml` then enable per page with `smartypants: process: true` in your page headers.
+2. **Enabled** by default by setting `process: true` in your `user/config/plugins/smartypants.yaml` then disable per page with `smartypants: process: false` in your page headers.
 
 
 If you need to change any value, then the best process is to copy the [smartypants.yaml](smartypants.yaml) file into your `users/config/plugins/` folder (create it if it doesn't exist), and then modify there.  This will override the default settings.

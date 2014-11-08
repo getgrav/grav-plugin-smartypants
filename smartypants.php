@@ -48,11 +48,9 @@ class SmartypantsPlugin extends Plugin
             $this->config->set('plugins.smartypants', array_merge($defaults, $page->header()->smartypants));
         }
 
-        $options = $this->config->get('plugins.smartypants.options');
-
-        if ($this->config->get('plugins.smartypants.enabled')) {
+        if ($this->config->get('plugins.smartypants.process')) {
             require_once(__DIR__.'/vendor/Michelf/SmartyPants.php');
-            $this->grav['page']->content(\Michelf\SmartyPants::defaultTransform($this->grav['page']->content(), $options));
+            $this->grav['page']->content(\Michelf\SmartyPants::defaultTransform($this->grav['page']->content(), $this->config->get('plugins.smartypants.options')));
         }
     }
 }
