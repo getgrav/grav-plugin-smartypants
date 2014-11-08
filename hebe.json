@@ -1,0 +1,15 @@
+{
+   "project":"grav-plugin-smartypants",
+   "platforms":{
+      "grav":{
+         "nodes":{
+            "plugin":[
+               {
+                  "source":"/",
+                  "destination":"/user/plugins/smartypants"
+               }
+            ]
+         }
+      }
+   }
+}
