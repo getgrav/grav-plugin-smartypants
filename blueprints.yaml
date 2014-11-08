@@ -1,6 +1,6 @@
 name: Smartypants
-version: 1.0.0
-description: The **Smartypants** plugin performs smarty typography transforms on quotes
+version: 1.0.1
+description: The **Smartypants** plugin performs smart typography transforms on quotes
 icon: quote-left
 author:
   name: Team Grav
