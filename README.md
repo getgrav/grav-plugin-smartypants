@@ -1,6 +1,6 @@
 # Grav Smartypants Plugin
 
-`Smartypants` is a [Grav](http://github.com/getgrav/grav) plugin that SmartyPants is a typography prettifyier tool for web writers. It easily translates plain ASCII punctuation characters into "smart" typographic punctuation HTML entities.
+`Smartypants` is a [Grav](http://github.com/getgrav/grav) v0.9.5+ plugin that SmartyPants is a typography prettifyier tool for web writers. It easily translates plain ASCII punctuation characters into "smart" typographic punctuation HTML entities.
 
 # Installation
 
