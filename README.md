@@ -32,11 +32,11 @@ The `smartypants` plugin comes with some sensible default configuration, that ar
 
 # Options
 
-    enabled: true           // enable/disable the entire plugin
-    process: true           // process smartypants
-    options: qDew           // smartypants specific configuration options
+    enabled: true           // Enables or Disables the entire plugin for all pages.
+    process: true           // Processes Smartypants (can be set on specific pages to enable processing individually)
+    options: qDew           // Smartypants-specific configuration options
 
-The options are described in detail on the PHP SmartyPants GitHub Site: https://github.com/michelf/php-smartypants
+The options are described in detail on the [PHP SmartyPants GitHub Site](https://github.com/michelf/php-smartypants): https://github.com/michelf/php-smartypants
 
 To customize the plugin, you first need to create an override config. To do so, create the folder `user/config/plugins` (if it doesn't exist already) and copy the [smartypants.yaml](smartypants.yaml) config file in there and then make your edits.
 
