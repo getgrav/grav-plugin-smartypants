@@ -1,5 +1,5 @@
 name: Smartypants
-version: 1.1.0
+version: 2.0.0
 description: The **Smartypants** plugin performs smart typography transforms on quotes
 icon: quote-left
 author:
@@ -25,9 +25,31 @@ form:
       validate:
            type: bool
 
-    process:
+    twig_filter:
+          type: toggle
+          label: Twig Filter
+          highlight: 1
+          default: 1
+          options:
+              1: Enabled
+              0: Disabled
+          validate:
+               type: bool
+
+    process_title:
+          type: toggle
+          label: Process Titles
+          highlight: 1
+          default: 0
+          options:
+              1: Enabled
+              0: Disabled
+          validate:
+               type: bool
+
+    process_content:
       type: toggle
-      label: Process SmartyPants
+      label: Process Content
       highlight: 1
       default: 1
       options:
