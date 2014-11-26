@@ -12,7 +12,6 @@ class SmartypantsPlugin extends Plugin
      * @var SmartypantsPlugin
      */
 
-
     /**
      * @return array
      */
@@ -20,7 +19,9 @@ class SmartypantsPlugin extends Plugin
     {
         return [
             'onPluginsInitialized' => ['onPluginsInitialized', 0],
+            'onPageProcessed' => ['onPageProcessed', 0],
             'onPageContentProcessed' => ['onPageContentProcessed', 0],
+            'onTwigExtensions' => ['onTwigExtensions', 0]
         ];
     }
 
@@ -32,25 +33,59 @@ class SmartypantsPlugin extends Plugin
         if ($this->isAdmin()) {
             $this->active = false;
         }
-
+        require_once(__DIR__.'/vendor/Michelf/SmartyPants.php');
     }
 
     /**
-     * Apply smartypants
+     * Apply smartypants to title
+     */
+    public function onPageProcessed(Event $event)
+    {
+        $page = $event['page'];
+        $this->mergeConfig($page);
+
+        if ($this->config->get('plugins.smartypants.process_title')) {
+            $page->title(\Michelf\SmartyPants::defaultTransform(
+                $page->title(),
+                $this->config->get('plugins.smartypants.options')
+            ));
+        }
+    }
+
+    /**
+     * Apply smartypants to content
      */
     public function onPageContentProcessed(Event $event)
     {
-        $defaults = (array) $this->config->get('plugins.smartypants');
-
-        /** @var Page $page */
         $page = $event['page'];
-        if (isset($page->header()->smartypants)) {
-            $this->config->set('plugins.smartypants', array_merge($defaults, $page->header()->smartypants));
+        $this->mergeConfig($page);
+
+        if ($this->config->get('plugins.smartypants.process_content')) {
+            $page->setRawContent(\Michelf\SmartyPants::defaultTransform(
+                $page->getRawContent(),
+                $this->config->get('plugins.smartypants.options')
+            ));
+        }
+    }
+
+    /**
+     * Add Twig Extensions
+     */
+    public function onTwigExtensions()
+    {
+        if (!$this->config->get('plugins.smartypants.twig_filter')) {
+            return;
         }
 
-        if ($this->config->get('plugins.smartypants.process')) {
-            require_once(__DIR__.'/vendor/Michelf/SmartyPants.php');
-            $page->setRawContent(\Michelf\SmartyPants::defaultTransform($page->getRawContent(), $this->config->get('plugins.smartypants.options')));
+        require_once(__DIR__.'/twig/SmartyPantsTwigExtension.php');
+        $this->grav['twig']->twig->addExtension(new SmartyPantsTwigExtension());
+    }
+
+    protected function mergeConfig(Page $page)
+    {
+        $defaults = (array) $this->config->get('plugins.smartypants');
+        if (isset($page->header()->smartypants)) {
+            $this->config->set('plugins.smartypants', array_merge($defaults, $page->header()->smartypants));
         }
     }
 }
