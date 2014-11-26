@@ -1,4 +1,5 @@
 enabled: true
+twig_filter: true
 process_title: false
 process_content: true
 options: qDew

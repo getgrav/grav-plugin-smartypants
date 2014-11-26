@@ -1,6 +1,6 @@
 # Grav Smartypants Plugin
 
-`Smartypants` is a [Grav](http://github.com/getgrav/grav) v0.9.5+ plugin that SmartyPants is a typography prettifyier tool for web writers. It easily translates plain ASCII punctuation characters into "smart" typographic punctuation HTML entities.
+`Smartypants` is a [Grav](http://github.com/getgrav/grav) v0.9.5+ plugin that SmartyPants is a typography prettifyier tool for web writers. It easily translates plain ASCII punctuation characters into "smart" typographic punctuation HTML entities. The Grav plugin for SmartyPants provides the ability to prettify **page titles**, **page content**, and also provides a `smartypants` twig filter.
 
 # Installation
 
@@ -33,7 +33,9 @@ The `smartypants` plugin comes with some sensible default configuration, that ar
 # Options
 
     enabled: true           // Enables or Disables the entire plugin for all pages.
-    process: true           // Processes Smartypants (can be set on specific pages to enable processing individually)
+    twig_filter: true       // Enables or Disables the twig filter
+    process_title: false    // Enables or Disables processing on page titles
+    process_content: true   // Enables or Disables processing on page contents
     options: qDew           // Smartypants-specific configuration options
 
 The options are described in detail on the [PHP SmartyPants GitHub Site](https://github.com/michelf/php-smartypants): https://github.com/michelf/php-smartypants
@@ -43,9 +45,10 @@ To customize the plugin, you first need to create an override config. To do so, 
 Also you can override the default options per-page:
 
     ---
-    title: My Page
+    title: 'My "Page"'
     smartypants:
-        process: true
+        process_title: true
+        process_content: true
         options: qd
     ---
 
@@ -53,8 +56,22 @@ Also you can override the default options per-page:
 
 There are two main scenarios:
 
-1. **Disabled** by default by setting `process: false` in your `user/config/plugins/smartypants.yaml` then enable per page with `smartypants: process: true` in your page headers.
-2. **Enabled** by default by setting `process: true` in your `user/config/plugins/smartypants.yaml` then disable per page with `smartypants: process: false` in your page headers.
+1. **Disabled** by default by setting `process_content: false` in your `user/config/plugins/smartypants.yaml` then enable per page with `smartypants: process_content: true` in your page headers.
+2. **Enabled** by default by setting `process_content: true` in your `user/config/plugins/smartypants.yaml` then disable per page with `smartypants: process_content: false` in your page headers.
+
+# Twig Filter
+
+There is now a Twig filter that you can use to process SmartyPants dynamically on any string when working with Twig:
+
+```
+{{ page.header.custom|smartypants }}
+```
+
+You can also pass custom SmartyPants options:
+
+```
+{{ page.header.custom|smartypants('qew') }}
+```
 
 # Updating
 
