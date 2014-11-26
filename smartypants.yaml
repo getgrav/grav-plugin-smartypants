@@ -1,3 +1,4 @@
 enabled: true
-process: true
+process_title: false
+process_content: true
 options: qDew
