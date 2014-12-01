@@ -29,7 +29,9 @@ class SmartypantsPlugin extends Plugin
     {
         if ($this->isAdmin()) {
             $this->active = false;
+            return;
         }
+
         require_once(__DIR__.'/vendor/Michelf/SmartyPants.php');
         $this->enable([
             'onPageProcessed' => ['onPageProcessed', 0],
