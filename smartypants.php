@@ -18,10 +18,7 @@ class SmartypantsPlugin extends Plugin
     public static function getSubscribedEvents()
     {
         return [
-            'onPluginsInitialized' => ['onPluginsInitialized', 0],
-            'onPageProcessed' => ['onPageProcessed', 0],
-            'onPageContentProcessed' => ['onPageContentProcessed', 0],
-            'onTwigExtensions' => ['onTwigExtensions', 0]
+            'onPluginsInitialized' => ['onPluginsInitialized', 0]
         ];
     }
 
@@ -32,8 +29,15 @@ class SmartypantsPlugin extends Plugin
     {
         if ($this->isAdmin()) {
             $this->active = false;
+            return;
         }
+
         require_once(__DIR__.'/vendor/Michelf/SmartyPants.php');
+        $this->enable([
+            'onPageProcessed' => ['onPageProcessed', 0],
+            'onPageContentProcessed' => ['onPageContentProcessed', 0],
+            'onTwigExtensions' => ['onTwigExtensions', 0]
+        ]);
     }
 
     /**
