@@ -34,42 +34,10 @@ class SmartypantsPlugin extends Plugin
 
         require_once(__DIR__.'/vendor/Michelf/SmartyPants.php');
         $this->enable([
+            'onTwigExtensions' => ['onTwigExtensions', 0],
             'onPageProcessed' => ['onPageProcessed', 0],
-            'onPageContentProcessed' => ['onPageContentProcessed', 0],
-            'onTwigExtensions' => ['onTwigExtensions', 0]
+            'onPageContentProcessed' => ['onPageContentProcessed', 0]
         ]);
-    }
-
-    /**
-     * Apply smartypants to title
-     */
-    public function onPageProcessed(Event $event)
-    {
-        $page = $event['page'];
-        $this->mergeConfig($page);
-
-        if ($this->config->get('plugins.smartypants.process_title')) {
-            $page->title(\Michelf\SmartyPants::defaultTransform(
-                $page->title(),
-                $this->config->get('plugins.smartypants.options')
-            ));
-        }
-    }
-
-    /**
-     * Apply smartypants to content
-     */
-    public function onPageContentProcessed(Event $event)
-    {
-        $page = $event['page'];
-        $this->mergeConfig($page);
-
-        if ($this->config->get('plugins.smartypants.process_content')) {
-            $page->setRawContent(\Michelf\SmartyPants::defaultTransform(
-                $page->getRawContent(),
-                $this->config->get('plugins.smartypants.options')
-            ));
-        }
     }
 
     /**
@@ -85,11 +53,35 @@ class SmartypantsPlugin extends Plugin
         $this->grav['twig']->twig->addExtension(new SmartyPantsTwigExtension());
     }
 
-    protected function mergeConfig(Page $page)
+    /**
+     * Apply smartypants to title
+     */
+    public function onPageProcessed(Event $event)
     {
-        $defaults = (array) $this->config->get('plugins.smartypants');
-        if (isset($page->header()->smartypants)) {
-            $this->config->set('plugins.smartypants', array_merge($defaults, $page->header()->smartypants));
+        $page = $event['page'];
+        $config = $this->mergeConfig($page);
+
+        if ($config->get('process_title')) {
+            $page->title(\Michelf\SmartyPants::defaultTransform(
+                $page->title(),
+                $config->get('options')
+            ));
+        }
+    }
+
+    /**
+     * Apply smartypants to content
+     */
+    public function onPageContentProcessed(Event $event)
+    {
+        $page = $event['page'];
+        $config = $this->mergeConfig($page);
+
+        if ($config->get('process_content')) {
+            $page->setRawContent(\Michelf\SmartyPants::defaultTransform(
+                $page->getRawContent(),
+                $config->get('options')
+            ));
         }
     }
 }
