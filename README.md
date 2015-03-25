@@ -72,6 +72,10 @@ You can also pass custom SmartyPants options:
 {{ page.header.custom|smartypants('qew') }}
 ```
 
+# Compatibility Notice
+
+> If Smartypants is **enabled** for a page that has `cache_enabled: false` and `twig: process: true`, the markdown will process and run events before Twig, causing single quotes to get converted and cause a conflict with the Twig processing. This will result in Twig erroring out.
+
 # Updating
 
 As development for the Smartypants plugin continues, new versions may become available that add additional features and functionality, improve compatibility with newer Grav releases, and generally provide a better user experience. Updating Smartypants is easy, and can be done through Grav's GPM system, as well as manually.
