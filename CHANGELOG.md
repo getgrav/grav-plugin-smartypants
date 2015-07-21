@@ -1,3 +1,10 @@
+# v2.2.0
+## 07/21/2015
+
+2. [](#improved)
+    * Changed the initialization even to `onBuildPagesInitialized`
+    * Added compatibility note in the `README.md` file
+    
 # v2.1.0
 ## 02/22/2015
 
