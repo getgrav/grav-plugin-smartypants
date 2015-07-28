@@ -58,7 +58,7 @@ form:
       validate:
            type: bool
 
-    selectors:
+    options:
       type: text
       label: Options
       size: large
