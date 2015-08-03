@@ -15,11 +15,11 @@ form:
               fields:
                 header.smartypants.twig_filter:
                   type: toggle
-                  toggleable: true
                   label: Twig filter
                   highlight: 1
                   help: Load the Twig filter to be availble in Twig templates
                   options:
+                      '': Global
                       1: Enabled
                       0: Disabled
                   validate:
@@ -27,11 +27,11 @@ form:
 
                 header.smartypants.process_title:
                   type: toggle
-                  toggleable: true
                   label: Process titles
-                  highlight: 0
+                  highlight: 1
                   help: Process page titles for Smartypants content
                   options:
+                      '': Global
                       1: Enabled
                       0: Disabled
                   validate:
@@ -39,11 +39,11 @@ form:
 
                 header.smartypants.process_content:
                   type: toggle
-                  toggleable: true
                   label: Process content
                   highlight: 1
                   help: Process page content for Smartypants content
                   options:
+                      '': Global
                       1: Enabled
                       0: Disabled
                   validate:
