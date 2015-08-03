@@ -25,33 +25,48 @@ form:
       validate:
            type: bool
 
+    enabled_in_admin:
+      type: toggle
+      label: Enable in admin
+      highlight: 0
+      default: 0
+      help: Should Smartypants plugin work in the admin during content preview
+      options:
+          1: Enabled
+          0: Disabled
+      validate:
+           type: bool
+
     twig_filter:
-          type: toggle
-          label: Twig Filter
-          highlight: 1
-          default: 1
-          options:
-              1: Enabled
-              0: Disabled
-          validate:
-               type: bool
+      type: toggle
+      label: Twig filter
+      highlight: 1
+      default: 1
+      help: Load the Twig filter to be availble in Twig templates
+      options:
+          1: Enabled
+          0: Disabled
+      validate:
+           type: bool
 
     process_title:
-          type: toggle
-          label: Process Titles
-          highlight: 1
-          default: 0
-          options:
-              1: Enabled
-              0: Disabled
-          validate:
-               type: bool
+      type: toggle
+      label: Process titles
+      highlight: 0
+      default: 0
+      help: Process page titles for Smartypants content
+      options:
+          1: Enabled
+          0: Disabled
+      validate:
+           type: bool
 
     process_content:
       type: toggle
-      label: Process Content
+      label: Process content
       highlight: 1
       default: 1
+      help: Process page content for Smartypants content
       options:
           1: Enabled
           0: Disabled

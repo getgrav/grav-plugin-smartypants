@@ -1,6 +1,7 @@
 <?php
 namespace Grav\Plugin;
 
+use Grav\Common\Data;
 use Grav\Common\Plugin;
 use Grav\Common\Grav;
 use Grav\Common\Page\Page;
@@ -18,7 +19,8 @@ class SmartypantsPlugin extends Plugin
     public static function getSubscribedEvents()
     {
         return [
-            'onBuildPagesInitialized' => ['onBuildPagesInitialized', 0]
+            'onBuildPagesInitialized' => ['onBuildPagesInitialized', 0],
+            'onBlueprintCreated' => ['onBlueprintCreated', 0]
         ];
     }
 
@@ -27,7 +29,7 @@ class SmartypantsPlugin extends Plugin
      */
     public function onBuildPagesInitialized()
     {
-        if ($this->isAdmin()) {
+        if ($this->isAdmin() && !$this->config->get('plugins.smartypants.enabled_in_admin', false)) {
             $this->active = false;
             return;
         }
@@ -82,6 +84,26 @@ class SmartypantsPlugin extends Plugin
                 $page->getRawContent(),
                 $config->get('options')
             ));
+        }
+    }
+
+    /**
+     * Extend page blueprints with feed configuration options.
+     *
+     * @param Event $event
+     */
+    public function onBlueprintCreated(Event $event)
+    {
+        static $inEvent = false;
+
+        /** @var Data\Blueprint $blueprint */
+        $blueprint = $event['blueprint'];
+        if (!$inEvent && $blueprint->get('form.fields.tabs')) {
+            $inEvent = true;
+            $blueprints = new Data\Blueprints(__DIR__ . '/blueprints/');
+            $extends = $blueprints->get('smartypants');
+            $blueprint->extend($extends, true);
+            $inEvent = false;
         }
     }
 }
