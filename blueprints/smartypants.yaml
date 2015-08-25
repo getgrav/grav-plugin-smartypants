@@ -1,0 +1,58 @@
+form:
+  fields:
+    tabs:
+      fields:
+        options:
+          type: tab
+
+          fields:
+
+            smartypants:
+              type: section
+              title: Smartypants
+              underline: true
+
+              fields:
+                header.smartypants.twig_filter:
+                  type: toggle
+                  label: Twig filter
+                  highlight: 1
+                  help: Load the Twig filter to be availble in Twig templates
+                  options:
+                      '': Global
+                      1: Enabled
+                      0: Disabled
+                  validate:
+                       type: bool
+
+                header.smartypants.process_title:
+                  type: toggle
+                  label: Process titles
+                  highlight: 1
+                  help: Process page titles for Smartypants content
+                  options:
+                      '': Global
+                      1: Enabled
+                      0: Disabled
+                  validate:
+                       type: bool
+
+                header.smartypants.process_content:
+                  type: toggle
+                  label: Process content
+                  highlight: 1
+                  help: Process page content for Smartypants content
+                  options:
+                      '': Global
+                      1: Enabled
+                      0: Disabled
+                  validate:
+                       type: bool
+
+                header.smartypants.options:
+                  type: text
+                  toggleable: true
+                  label: Options
+                  size: large
+                  placeholder: "SmartyPants Options"
+                  help: See the docs for documentation: https://github.com/michelf/php-smartypants

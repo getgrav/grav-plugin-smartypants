@@ -1,3 +1,10 @@
+# v2.3.0
+## 08/25/2015
+
+1. [](#improved)
+    * Added blueprints for Grav Admin plugin
+    * Added page-level smartypants options
+
 # v2.2.0
 ## 07/21/2015
 
