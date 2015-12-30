@@ -1,3 +1,9 @@
+# v2.4.0
+## 12/30/2015
+
+1. [](#improved)
+    * Renamed initial event for more reliable operation
+
 # v2.3.0
 ## 08/25/2015
 

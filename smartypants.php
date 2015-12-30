@@ -19,7 +19,7 @@ class SmartypantsPlugin extends Plugin
     public static function getSubscribedEvents()
     {
         return [
-            'onBuildPagesInitialized' => ['onBuildPagesInitialized', 0],
+            'onPluginsInitialized' => ['onPluginsInitialized', 0],
             'onBlueprintCreated' => ['onBlueprintCreated', 0]
         ];
     }
@@ -27,7 +27,7 @@ class SmartypantsPlugin extends Plugin
     /**
      * Initialize configuration
      */
-    public function onBuildPagesInitialized()
+    public function onPluginsInitialized()
     {
         if ($this->isAdmin() && !$this->config->get('plugins.smartypants.enabled_in_admin', false)) {
             $this->active = false;
