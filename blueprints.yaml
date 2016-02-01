@@ -83,7 +83,6 @@ form:
     overrides:
       type: section
       title: Overrides
-      underline: 1
       fields:
         dq_open:
           type: text
