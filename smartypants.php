@@ -111,8 +111,9 @@ class SmartypantsPlugin extends Plugin
     /**
      * Apply SmartyPants transformation on raw text.
      *
-     * @param string $text raw text
-     * @return string transformed text
+     * @param string $text Raw text
+     * @param object $config Configuration object
+     * @return string Transformed text
      */
     protected function transform($text, $config)
     {
