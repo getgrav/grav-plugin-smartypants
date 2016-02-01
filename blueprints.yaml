@@ -79,3 +79,36 @@ form:
       size: large
       placeholder: "SmartyPants Options"
       help: See the docs for documentation: https://github.com/michelf/php-smartypants
+
+    overrides:
+      type: section
+      title: Overrides
+      underline: 1
+      fields:
+        dq_open:
+          type: text
+          label: Double quote open
+          size: small
+          placeholder: "&amp;#8220;"
+          help: Custom HTML string for double quote open
+
+        dq_close:
+          type: text
+          label: Double quote close
+          size: small
+          placeholder: "&amp;#8221;"
+          help: Custom HTML string for double quote close
+
+        sq_open:
+          type: text
+          label: Single quote open
+          size: small
+          placeholder: "&amp;#8216;"
+          help: Custom HTML string for single quote open
+
+        sq_close:
+          type: text
+          label: Single quote close / apostrophe
+          size: small
+          placeholder: "&amp;#8217;"
+          help: Custom HTML string for single quote close and apostrophe

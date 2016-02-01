@@ -35,6 +35,7 @@ class SmartypantsPlugin extends Plugin
         }
 
         require_once(__DIR__.'/vendor/Michelf/SmartyPants.php');
+        require_once(__DIR__.'/vendor/Michelf/SmartyPantsTypographer.php');
         $this->enable([
             'onTwigExtensions' => ['onTwigExtensions', 0],
             'onPageProcessed' => ['onPageProcessed', 0],
@@ -64,9 +65,9 @@ class SmartypantsPlugin extends Plugin
         $config = $this->mergeConfig($page);
 
         if ($config->get('process_title')) {
-            $page->title(\Michelf\SmartyPants::defaultTransform(
+            $page->title($this->transform(
                 $page->title(),
-                $config->get('options')
+                $config
             ));
         }
     }
@@ -80,9 +81,9 @@ class SmartypantsPlugin extends Plugin
         $config = $this->mergeConfig($page);
 
         if ($config->get('process_content')) {
-            $page->setRawContent(\Michelf\SmartyPants::defaultTransform(
+            $page->setRawContent($this->transform(
                 $page->getRawContent(),
-                $config->get('options')
+                $config
             ));
         }
     }
@@ -105,5 +106,21 @@ class SmartypantsPlugin extends Plugin
             $blueprint->extend($extends, true);
             $inEvent = false;
         }
+    }
+
+    /**
+     * Apply SmartyPants transformation on raw text.
+     *
+     * @param string $text raw text
+     * @return string transformed text
+     */
+    protected function transform($text, $config)
+    {
+        $smartypants = new \Michelf\SmartyPantsTypographer($config->get('options'));
+        if ($config->get('dq_open')) $smartypants->smart_doublequote_open = $config->get('dq_open');
+        if ($config->get('dq_close')) $smartypants->smart_doublequote_close = $config->get('dq_close');
+        if ($config->get('sq_open')) $smartypants->smart_singlequote_open = $config->get('sq_open');
+        if ($config->get('sq_close')) $smartypants->smart_singlequote_close = $config->get('sq_close');
+        return $smartypants->transform($text);
     }
 }
