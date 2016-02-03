@@ -39,6 +39,13 @@ The `smartypants` plugin comes with some sensible default configuration, that ar
 
 The options are described in detail on the [PHP SmartyPants GitHub Site](https://github.com/michelf/php-smartypants): https://github.com/michelf/php-smartypants
 
+You can override SmartyPants' default quotes (e.g. for other language styles like „German“):
+
+    dq_open:  &#8220;      // Custom HTML string for double quote open
+    dq_close: &#8221;      // Custom HTML string for double quote close
+    sq_open:  &#8216;      // Custom HTML string for single quote open
+    sq_close: &#8217;      // Custom HTML string for single quote close
+
 To customize the plugin, you first need to create an override config. To do so, create the folder `user/config/plugins` (if it doesn't exist already) and copy the [smartypants.yaml](smartypants.yaml) config file in there and then make your edits.
 
 Also you can override the default options per-page:
