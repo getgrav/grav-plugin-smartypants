@@ -1,3 +1,9 @@
+# v2.5.0
+## 02/05/2016
+
+1. [](#new)
+    * Added custom overrides for SmartyPants default quotes
+
 # v2.4.0
 ## 12/30/2015
 
