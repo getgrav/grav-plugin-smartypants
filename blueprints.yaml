@@ -78,7 +78,7 @@ form:
       label: Options
       size: large
       placeholder: "SmartyPants Options"
-      help: See the docs for documentation: https://github.com/michelf/php-smartypants
+      help: "See the docs for documentation: https://github.com/michelf/php-smartypants"
 
     overrides:
       type: section
