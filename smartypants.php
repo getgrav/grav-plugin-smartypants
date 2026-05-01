@@ -3,8 +3,6 @@ namespace Grav\Plugin;
 
 use Grav\Common\Data;
 use Grav\Common\Plugin;
-use Grav\Common\Grav;
-use Grav\Common\Page\Page;
 use RocketTheme\Toolbox\Event\Event;
 
 class SmartypantsPlugin extends Plugin
