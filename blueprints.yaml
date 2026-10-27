@@ -110,7 +110,14 @@ form:
 
         sq_close:
           type: text
-          label: Single quote close / apostrophe
+          label: Single quote close
           size: small
           placeholder: "&amp;#8217;"
-          help: Custom HTML string for single quote close and apostrophe
+          help: Custom HTML string for single quote close. Also used for the apostrophe unless Apostrophe is set
+
+        apostrophe:
+          type: text
+          label: Apostrophe
+          size: small
+          placeholder: "&amp;#8217;"
+          help: Custom HTML string for the apostrophe (it's, geht's). Leave empty to use the single quote close

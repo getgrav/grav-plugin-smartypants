@@ -1,7 +1,9 @@
 # v2.6.1
 ## 10/27/2026
 
-1. [](#bugfix)
+1. [](#new)
+    * New Apostrophe override, for languages whose closing single quote isn't the apostrophe [#7](https://github.com/getgrav/grav-plugin-smartypants/issues/7)
+2. [](#bugfix)
     * Quotes inside shortcode attributes are no longer curled, so `[span class="x"]` keeps its class [#6](https://github.com/getgrav/grav-plugin-smartypants/issues/6)
     * Twig in page content no longer breaks when SmartyPants curls the quotes inside it
     * A quote standing on its own next to formatting, as in `"*Hallo*"`, now uses your configured quote characters instead of the English ones

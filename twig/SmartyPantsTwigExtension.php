@@ -46,6 +46,8 @@ class SmartyPantsTwigExtension extends \Twig_Extension
             $smartypants->smart_singlequote_open = $this->config->get('plugins.smartypants.sq_open');
         if ($this->config->get('plugins.smartypants.sq_close'))
             $smartypants->smart_singlequote_close = $this->config->get('plugins.smartypants.sq_close');
+        if ($this->config->get('plugins.smartypants.apostrophe'))
+            $smartypants->smart_apostrophe = $this->config->get('plugins.smartypants.apostrophe');
 
         return $smartypants->transform($content);
     }

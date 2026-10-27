@@ -9,6 +9,12 @@ use Michelf\SmartyPantsTypographer;
 class Typographer extends SmartyPantsTypographer
 {
     /**
+     * Apostrophe character. Empty keeps the library behavior, where the
+     * closing single quote doubles as the apostrophe.
+     */
+    public $smart_apostrophe = '';
+
+    /**
      * Leave Twig tags alone. Grav renders content Twig after
      * onPageContentProcessed, so a curled quote inside {{ }} or {% %}
      * is a Twig syntax error by the time Twig sees it.
@@ -53,5 +59,21 @@ class Typographer extends SmartyPantsTypographer
         }
 
         return parent::educate($t, $prev_token_last_char);
+    }
+
+    /**
+     * A quote between two letters (it's, geht's, l'été) or in front of a
+     * decade ('80s) is an apostrophe, never a closing quote.
+     */
+    protected function educateQuotes($_)
+    {
+        if ($this->smart_apostrophe !== '') {
+            $patterns = ["/(?<=\\w)'(?=\\w)/u", "/'(?=\\d{2}s\\b)/u"];
+            // /u gives \w the accented letters; on invalid UTF-8 it fails, so fall back to plain \w.
+            $_ = preg_replace($patterns, $this->smart_apostrophe, $_)
+                ?? preg_replace(["/(?<=\\w)'(?=\\w)/", "/'(?=\\d{2}s\\b)/"], $this->smart_apostrophe, $_);
+        }
+
+        return parent::educateQuotes($_);
     }
 }

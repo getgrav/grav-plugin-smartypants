@@ -124,6 +124,7 @@ class SmartypantsPlugin extends Plugin
         if ($config->get('dq_close')) $smartypants->smart_doublequote_close = $config->get('dq_close');
         if ($config->get('sq_open')) $smartypants->smart_singlequote_open = $config->get('sq_open');
         if ($config->get('sq_close')) $smartypants->smart_singlequote_close = $config->get('sq_close');
+        if ($config->get('apostrophe')) $smartypants->smart_apostrophe = $config->get('apostrophe');
         return $smartypants->transform($text);
     }
 }
