@@ -36,7 +36,7 @@ class SmartyPantsTwigExtension extends \Twig_Extension
         if (!$options) {
             $options = $this->config->get('plugins.smartypants.options');
         }
-        $smartypants = new \Michelf\SmartyPantsTypographer($options);
+        $smartypants = new Smartypants\Typographer($options);
 
         if ($this->config->get('plugins.smartypants.dq_open'))
             $smartypants->smart_doublequote_open = $this->config->get('plugins.smartypants.dq_open');
