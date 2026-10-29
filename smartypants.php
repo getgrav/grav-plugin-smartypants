@@ -34,10 +34,14 @@ class SmartypantsPlugin extends Plugin
 
         require_once(__DIR__.'/vendor/Michelf/SmartyPants.php');
         require_once(__DIR__.'/vendor/Michelf/SmartyPantsTypographer.php');
+        require_once(__DIR__.'/classes/Typographer.php');
         $this->enable([
             'onTwigExtensions' => ['onTwigExtensions', 0],
             'onPageProcessed' => ['onPageProcessed', 0],
-            'onPageContentProcessed' => ['onPageContentProcessed', 0]
+            // After shortcode-core (-10), so shortcodes are already HTML and
+            // their attributes are skipped like any other tag. Before
+            // page-toc (-20), so heading anchors stay the same.
+            'onPageContentProcessed' => ['onPageContentProcessed', -15]
         ]);
     }
 
@@ -115,11 +119,12 @@ class SmartypantsPlugin extends Plugin
      */
     protected function transform($text, $config)
     {
-        $smartypants = new \Michelf\SmartyPantsTypographer($config->get('options'));
+        $smartypants = new Smartypants\Typographer($config->get('options'));
         if ($config->get('dq_open')) $smartypants->smart_doublequote_open = $config->get('dq_open');
         if ($config->get('dq_close')) $smartypants->smart_doublequote_close = $config->get('dq_close');
         if ($config->get('sq_open')) $smartypants->smart_singlequote_open = $config->get('sq_open');
         if ($config->get('sq_close')) $smartypants->smart_singlequote_close = $config->get('sq_close');
+        if ($config->get('apostrophe')) $smartypants->smart_apostrophe = $config->get('apostrophe');
         return $smartypants->transform($text);
     }
 }

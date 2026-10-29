@@ -36,7 +36,7 @@ class SmartyPantsTwigExtension extends \Twig_Extension
         if (!$options) {
             $options = $this->config->get('plugins.smartypants.options');
         }
-        $smartypants = new \Michelf\SmartyPantsTypographer($options);
+        $smartypants = new Smartypants\Typographer($options);
 
         if ($this->config->get('plugins.smartypants.dq_open'))
             $smartypants->smart_doublequote_open = $this->config->get('plugins.smartypants.dq_open');
@@ -46,6 +46,8 @@ class SmartyPantsTwigExtension extends \Twig_Extension
             $smartypants->smart_singlequote_open = $this->config->get('plugins.smartypants.sq_open');
         if ($this->config->get('plugins.smartypants.sq_close'))
             $smartypants->smart_singlequote_close = $this->config->get('plugins.smartypants.sq_close');
+        if ($this->config->get('plugins.smartypants.apostrophe'))
+            $smartypants->smart_apostrophe = $this->config->get('plugins.smartypants.apostrophe');
 
         return $smartypants->transform($content);
     }
