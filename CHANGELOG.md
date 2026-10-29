@@ -1,5 +1,5 @@
 # v2.6.1
-## 10/27/2026
+## 10/29/2026
 
 1. [](#new)
     * New Apostrophe override, for languages whose closing single quote isn't the apostrophe [#7](https://github.com/getgrav/grav-plugin-smartypants/issues/7)
